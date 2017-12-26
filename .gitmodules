@@ -1,0 +1,3 @@
+[submodule "py3minepi"]
+	path = py3minepi
+	url = https://github.com/py3minepi/py3minepi

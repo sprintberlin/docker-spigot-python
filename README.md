@@ -10,7 +10,7 @@ released minecraft.jar. Due to legal reasons you can build it yourself but you c
 
 To run the latest stable version of this docker image run
 
-	docker run -p 25565:25565 -p 4711:4711 rickwargo/docker-spigot-python
+	docker run -p 25565:25565 -p 4711:4711 --name spigot rickwargo/docker-spigot-python
 
 The parameter
 
