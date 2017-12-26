@@ -3,6 +3,8 @@
 
 This docker image builds and runs the Spigot version of Minecraft and embeds the RaspberryJuice plugin for programming with Python. 
 
+For details on using this, refer to the PDF Document: Learn-to-Program-in-Python-with-Minecraft-and-Docker.pdf
+
 If the spigot.jar is not found in the minecraft directory the system pulls down BuildTool and build a new spigot.jar from the latest
 released minecraft.jar. Due to legal reasons you can build it yourself but you can't redistribute the finished jar file.
 
