@@ -1,3 +1,9 @@
 [submodule "py3minepi"]
 	path = py3minepi
 	url = https://github.com/py3minepi/py3minepi
+[submodule "python/Examples/Python-Minecraft-Examples"]
+	path = python/Examples/Python-Minecraft-Examples
+	url = https://github.com/hashbangstudio/Python-Minecraft-Examples
+[submodule "python/Examples/raspberryjammod"]
+	path = python/Examples/raspberryjammod
+	url = https://github.com/arpruss/raspberryjammod
