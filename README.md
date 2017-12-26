@@ -1,4 +1,4 @@
-## Minecraft server SPIGOT on Alpine and openjdk:8-jre
+## Minecraft server SpigotMC on Alpine and openjdk:8-jre
 [![](https://images.microbadger.com/badges/image/rickwargo/spigot.svg)](https://microbadger.com/images/rickwargo/spigot "Get your own image badge on microbadger.com")
 
 This docker image builds and runs the Spigot version of Minecraft and embeds the RaspberryJuice plugin for programming with Python. 
