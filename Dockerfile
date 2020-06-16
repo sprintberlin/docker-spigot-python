@@ -23,11 +23,10 @@ WORKDIR /spigot
 # Only build Spigot if it does not exist.
 RUN if [ ! -f /spigot/spigot.jar ]; then \
     wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
-    java -Xms${MC_MINMEM} -Xmx${MC_MAXMEM} -jar BuildTools.jar --rev $SPIGOT_VER --compile craftbukkit && \
+    java -Xms${MC_MINMEM} -Xmx${MC_MAXMEM} -jar BuildTools.jar --rev $SPIGOT_VER && \
     rm -rf /root/.m2 && \
     find * -maxdepth 0 ! -name '*.jar' -exec rm -rf {} \; && \
-    mv spigot-*.jar spigot.jar && \
-    mv craftbukkit-*.jar craftbukkit.jar; \
+    mv spigot-*.jar spigot.jar; \
   fi
 
 WORKDIR /minecraft

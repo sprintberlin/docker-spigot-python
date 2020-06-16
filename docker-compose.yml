@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  spigot:
+    container_name: spigot
+    build:
+      context: ./
+    ports:
+      - "25565:25565"
+      - "4711:4711"
+    volumes:
+      - ./minecraft/:/minecraft

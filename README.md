@@ -1,4 +1,4 @@
-## Minecraft server SpigotMC on Alpine and openjdk:8-jre
+## Minecraft server SpigotMC on Alpine and openjdk:8-jre updated 06/2020
 [![](https://images.microbadger.com/badges/image/rickwargo/spigot.svg)](https://microbadger.com/images/rickwargo/spigot "Get your own image badge on microbadger.com")
 
 This docker image builds and runs the Spigot version of Minecraft and embeds the RaspberryJuice plugin for programming with Python. 
@@ -10,34 +10,7 @@ released minecraft.jar. Due to legal reasons you can build it yourself but you c
 
 ## Starting the container
 
-To run the latest stable version of this docker image run
-
-	docker run -p 25565:25565 -p 4711:4711 --name spigot rickwargo/docker-spigot-python
-
-The parameter
-
-	-p 25565:25565
-
-tells on which external port the internal tcp port 25565 should be connected, in this case the same, if
-you only type -p 25565 it will connect to a random port on the machine.
-
-The parameter
-
-	-p 4711:4711
-
-tells on which external port the internal tcp port 4711 should be connected. This is for the RaspberryJuice Plug-in.
-
-### Giving the container a name
-
-To make it easier to handle you container you can give it a name instead of the long
-number thats normally give to it, add a
-
-	--name spigot
-
-to the run command to give it the name minecraft, then you can start it easier with
-
-	docker start spigot
-	docker stop spigot
+docker-compose up -d
 
 ### Accepting the End User License Agreement
 Mojang now requires the end user to access their EULA, located at
@@ -50,19 +23,15 @@ This will take a couple of minutes depending on computer and network speed. It w
 the selected version on BuildTools and build a spigot.jar from the selected minecraft version.
 This is done in numerous steps so be patient. 
 
-    docker build -t rickwargo/docker-spigot-python .
-
 ### Selecting version to compile
 
-If you don't specify it will always compile the latest version but if you want a specific version you can specify it by adding
+If you don't specify it will always compile the latest version but if you want a specific version you can specify it by changing the value in the Dockerfile.
 
-	--build-arg SPIGOT_VER=<version>
+	SPIGOT_VER=<version>
 
-where <version> is the version you would like to use, to build it with version 1.8 add
+where <version> is the version you would like to use, to build it with version 1.8
 
-	--build-arg SPIGOT_VER=1.8
-
-to the docker run line.
+	SPIGOT_VER=1.8
 
 #### versions available
 
@@ -76,19 +45,19 @@ There are two environment variables to set maximum and initial memory for spigot
 
 Sets the maximum memory to use <size>m for Mb or <size>g for Gb, if this parameter is not set 1 Gb is chosen, to set the maximum memory to 1536 Mb
 
-    --build-arg MC_MAXMEM=2g
+    --MC_MAXMEM=2g
 
 #### MC_MINMEM
 
 sets the initial memory reservation used, use <size>m for Mb or <size>g for Gb, if this parameter is not set, it is set to MC_MAXMEM, to set the initial size t0 512 Mb
 
-    --build-arg MC_MINMEM=512m
+    --MC_MINMEM=512m
 
 ## Stopping the container
 
 When the container is stopped with the command
 
-	docker stop spigot
+	docker-compose down
 
 the spigot server is shutdown nicely with a console stop command to give it time to save everything before
 stopping the container. If you look in the output from the server this show
@@ -110,24 +79,6 @@ easier to edit and do a backup of the files you can attach a directory from the 
 (where you run the docker command) and attach it to the local file system in the container.
 The syntax for it is
 
-	-v /host/path/to/dir:/container/path/to/dir
-
-To attach the minecraft directory in the container to directory ~/docker-spigot-python/minecraft you add
-
-	-v ~/docker-spigot-python/minecraft:/minecraft
+Change the volume mapping in the docker-compose.yml file.
 
 Note the spigot files are internally kept at /spigot and the plugs are kept on /plugins. These do not need to be mapped to an external folder.
-
-## Issues
-
-If you have any problems with or questions about this image, please contact us by submitting a ticket through a [GitHub issue](https://github.com/rickwargo/docker-spigot-python/issues "GitHub issue")
-
-1. Look to see if someone already filled the bug, if not add a new one.
-2. Add a good title and description with the following information.
- - any logs relevant for the problem
- - how the container was started (flags, environment variables, mounted volumes etc)
- - any other information that can be helpful
-
-## Contributing
-
-You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
