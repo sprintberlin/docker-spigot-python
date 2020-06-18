@@ -4,7 +4,7 @@ LABEL maintainer="Rick Wargo <github@epicminds.com>"
 
 # Versions of libraries to use
 ARG SPIGOT_VER=latest
-ARG RASPBERRYJUICE_VER=1.11
+ARG RASPBERRYJUICE_VER=1.12.1
 ARG MC_MINMEM=512M
 ARG MC_MAXMEM=1536M
 
