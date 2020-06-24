@@ -2,6 +2,7 @@ version: "3.8"
 services:
   spigot:
     container_name: spigot
+    restart: always
     build:
       context: ./
     ports:
