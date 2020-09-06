@@ -71,6 +71,11 @@ stopping the container. If you look in the output from the server this show
 	[13:01:51 INFO]: Saving chunks for level 'world'/Overworld
 	[13:01:51 INFO]: Saving chunks for level 'world_nether'/Nether
 	[13:01:51 INFO]: Saving chunks for level 'world_the_end'/The End
+	
+## auto start docker-compose on boot (debian)
+Example systemctl-service file: `systemctl-startup.dist`
+more here: https://philipp-weissmann.de/docker-compose_mit_systemd/
+systemctl start dc@docker-spigot-python
 
 ## Having the Minecraft files on the host machine
 

@@ -1,0 +1,31 @@
+# docker-compose auto startup on boot
+# copy this file to /etc/systemd/system/dc@.service
+# enable: systemctl enable dc@docker-spigot-python
+# more infos: https://philipp-weissmann.de/docker-compose_mit_systemd/
+
+[Unit]
+Description=%i service with docker compose
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+TimeoutStartSec=1200
+# will be passed to docker container
+Environment="HOST_MACHINE_NAME=put_your_hostname_here"
+
+WorkingDirectory=/root/docker/%i
+
+# Remove old containers, images and volumes and update it
+ExecStartPre=/usr/local/bin/docker-compose down -v
+ExecStartPre=/usr/local/bin/docker-compose rm -fv
+ExecStartPre=/usr/local/bin/docker-compose pull
+
+# Compose up
+ExecStart=/usr/local/bin/docker-compose up
+
+# Compose down, remove containers and volumes
+ExecStop=/usr/local/bin/docker-compose down -v
+
+[Install]
+WantedBy=multi-user.target
