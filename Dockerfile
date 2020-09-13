@@ -20,14 +20,12 @@ RUN apk --update add git && \
 
 WORKDIR /spigot
 
-# Only build Spigot if it does not exist.
-RUN if [ ! -f /spigot/spigot.jar ]; then \
-    wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar && \
-    java -Xms${MC_MINMEM} -Xmx${MC_MAXMEM} -jar BuildTools.jar --rev $SPIGOT_VER && \
-    rm -rf /root/.m2 && \
-    find * -maxdepth 0 ! -name '*.jar' -exec rm -rf {} \; && \
-    mv spigot-*.jar spigot.jar; \
-  fi
+# Build Spigot
+RUN wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+RUN java -Xms${MC_MINMEM} -Xmx${MC_MAXMEM} -jar BuildTools.jar --rev $SPIGOT_VER
+RUN rm -rf /root/.m2
+RUN find * -maxdepth 0 ! -name '*.jar' -exec rm -rf {} \;
+RUN mv spigot-*.jar spigot.jar;
 
 WORKDIR /minecraft
 
